@@ -1,0 +1,21 @@
+#!/usr/bin/python3
+"""
+Creates and distributes an archive to web servers
+"""
+
+from datetime import datetime
+from fabric.api import run, local, env, put
+from os.path import isfile, exists
+
+
+env.hosts = ['34.138.173.41','34.73.165.69']
+
+
+
+def deploy():
+        """ Call the do_pack() function and based on its return value,
+        call do_deploy or return False
+        """
+            result = do_pack()
+            if result:
+                return do_deploy(result)
